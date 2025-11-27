@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_sample/core/routing/app_paths.dart';
 import 'package:go_router_sample/core/routing/routing_keys.dart';
+import 'package:go_router_sample/features/controllers/dashboard_cubit/dashboard_cubit.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -11,7 +13,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  late final DashboardCubit cubit;
   int _count = 0;
+
+  @override
+  void initState() {
+    cubit = context.read<DashboardCubit>();
+    super.initState();
+  }
 
   void _increment() {
     setState(() {
